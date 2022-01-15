@@ -1,0 +1,28 @@
+{
+  "name": "@stocktrax/utils",
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Utility functions.",
+  "author": "Jacob Bare <jacob@parameter1.com>",
+  "homepage": "https://github.com/zarathustra323/stocktrax/tree/main/packages/utils#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zarathustra323/stocktrax.git",
+    "directory": "packages/utils"
+  },
+  "private": true,
+  "license": "MIT",
+  "main": "src/index.js",
+  "scripts": {
+    "lint": "eslint --ignore-path ../../.eslintignore --ext .js ./",
+    "test": "yarn lint && mocha ./test/*.spec.js ./test/**/*.spec.js"
+  },
+  "engines": {
+    "node": ">=14.0"
+  },
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ]
+}
