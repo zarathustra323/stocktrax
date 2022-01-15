@@ -1,0 +1,31 @@
+{
+  "name": "@stocktrax/polygon.io",
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Polygon.io API client",
+  "author": "Jacob Bare <jacob@parameter1.com>",
+  "homepage": "https://github.com/zarathustra323/stocktrax/tree/main/packages/polygon.io#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zarathustra323/stocktrax.git",
+    "directory": "packages/polygon.io"
+  },
+  "private": true,
+  "license": "MIT",
+  "main": "src/index.js",
+  "scripts": {
+    "lint": "eslint --ext .js ./",
+    "test": "yarn lint"
+  },
+  "engines": {
+    "node": ">=14.0"
+  },
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ],
+  "dependencies": {
+    "node-fetch": "^3.1.0"
+  }
+}
