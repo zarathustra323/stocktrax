@@ -1,0 +1,26 @@
+{
+  "name": "stocktrax",
+  "author": "Jacob Bare <jacob@parameter1.com>",
+  "private": true,
+  "repository": "https://github.com/zarathustra323/stocktrax.git",
+  "license": "MIT",
+  "scripts": {
+    "test": "lerna run test",
+    "test-nolint": "lerna run test-nolint",
+    "lint": "lerna run lint",
+    "lerna": "lerna"
+  },
+  "workspaces": [
+    "app",
+    "graphql",
+    "packages/*"
+  ],
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "eslint": "^8.6.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4",
+    "lerna": "^4.0.0",
+    "mocha": "^9.1.4"
+  }
+}
