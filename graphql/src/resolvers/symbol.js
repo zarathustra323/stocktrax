@@ -50,7 +50,7 @@ export default {
         exchanges,
         pagination,
         regions,
-        sort,
+        searchPhrase,
         types,
       } = input;
 
@@ -60,11 +60,22 @@ export default {
       if (regions.length) $and.push({ region: { $in: regions } });
       if (types.length) $and.push({ type: { $in: types } });
 
-      const query = { ...($and.length && { $and }) };
-      const projection = projectionForConnection(info);
+      const query = {
+        ...(searchPhrase && {
+          $or: [
+            { $text: { $search: searchPhrase } },
+            { symbol: searchPhrase },
+          ],
+        }),
+        ...($and.length && { $and }),
+      };
+      const projection = {
+        ...projectionForConnection(info),
+        ...(searchPhrase && { _score: { $meta: 'textScore' } }),
+      };
       return repos.get('symbol').paginate({
         query,
-        sort,
+        sort: searchPhrase ? { field: '_score', order: { $meta: 'textScore' } } : input.sort,
         projection,
         pagination,
       });

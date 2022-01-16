@@ -99,6 +99,8 @@ input QuerySymbolsInput {
   pagination: PaginationInput! = {}
   "The country codes, in ISO 3166-1 alpha-2, to filter by."
   regions: [String!]! = []
+  "A phrase to search symbols by. When set, the sort is set to relevancy."
+  searchPhrase: String
   "Specifies the sort field and order."
   sort: QuerySymbolsSortInput! = {}
   "The security types to filter by."
