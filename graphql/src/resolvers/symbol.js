@@ -66,16 +66,26 @@ export default {
   },
 
   SymbolCompanyInfo: {
-    ceo(info) {
-      return info.CEO;
+    ceo({ CEO }) {
+      return CEO || null;
+    },
+    description({ description }) {
+      return description || null;
+    },
+    industry({ industry }) {
+      return industry || null;
     },
     name(info) {
       return info.companyName;
+    },
+    sector({ sector }) {
+      return sector || null;
     },
     tags(info) {
       return getAsArray(info.tags);
     },
     website({ website }) {
+      if (!website) return null;
       return /^http/.test(website) ? website : `https://${website}`;
     },
   },
