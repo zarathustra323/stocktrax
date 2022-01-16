@@ -29,9 +29,11 @@ const map = new Map([
   })],
 ]);
 
-export default {
-  get: (key) => {
-    if (!map.has(key)) throw new Error(`No repository found for ${key}`);
-    return map.get(key);
-  },
-};
+export default function Repos() {
+  return {
+    get: (key) => {
+      if (!map.has(key)) throw new Error(`No repository found for ${key}`);
+      return map.get(key);
+    },
+  };
+}

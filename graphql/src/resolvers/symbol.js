@@ -1,4 +1,3 @@
-import repos from '../mongodb/repos.js';
 import projectionForType from '../projection/get-for-type.js';
 import projectionForConnection from '../projection/get-for-connection.js';
 
@@ -18,7 +17,7 @@ const symbolTypeMap = new Map([
 
 export default {
   Symbol: {
-    async exchange({ exchangeSegment }, _, __, info) {
+    async exchange({ exchangeSegment }, _, { repos }, info) {
       if (!exchangeSegment) return null;
       const loader = await repos.get('exchange').getDataloader();
       const projection = projectionForType(info);
@@ -45,7 +44,7 @@ export default {
   },
 
   Query: {
-    async symbols(_, { input }, __, info) {
+    async symbols(_, { input }, { repos }, info) {
       const {
         currencies,
         exchanges,

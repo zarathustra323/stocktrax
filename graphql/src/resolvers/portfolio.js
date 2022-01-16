@@ -1,5 +1,3 @@
-import repos from '../mongodb/repos.js';
-
 export default {
   Portfolio: {
     id(doc) {
@@ -8,7 +6,7 @@ export default {
   },
 
   Mutation: {
-    newPortfolio(_, { input }) {
+    newPortfolio(_, { input }, { repos }) {
       return repos.get('portfolio').insertOne({
         doc: { name: input.name, type: input.type },
       });
@@ -16,7 +14,7 @@ export default {
   },
 
   Query: {
-    async portfolios() {
+    async portfolios(_, __, { repos }) {
       const cursor = await repos.get('portfolio').find();
       return cursor.toArray();
     },

@@ -7,7 +7,7 @@ import {
 } from 'apollo-server-core';
 import fastify from 'fastify';
 import { get, set } from '@stocktrax/object-path';
-import { CloseFastifyPlugin, OnShutdownPlugin } from './plugins/index.js';
+import { CloseFastifyPlugin, CorePlugin, OnShutdownPlugin } from './plugins/index.js';
 import schema from './schema.js';
 
 const isProduction = process.env.NODE_ENV === 'production';
@@ -36,6 +36,7 @@ export default async (options = {}) => {
         stopGracePeriodMillis: process.env.SHUTDOWN_GRACE_PERIOD,
       }),
       OnShutdownPlugin({ fn: options.onShutdown }),
+      CorePlugin(),
     ],
     formatError: (err) => {
       const statusCode = get(err, 'extensions.exception.statusCode');
