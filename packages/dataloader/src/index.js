@@ -28,6 +28,12 @@ export default class MongoDBLoader {
     return this.loader.load(key);
   }
 
+  loadMany({ foreignField = '_id', values, projection } = {}) {
+    const { fields } = MongoDBLoader.prepare({ foreignField, projection });
+    const keys = values.map((value) => ({ foreignField, value, fields }));
+    return this.loader.loadMany(keys);
+  }
+
   /**
    * @private
    * @param {array} keys
