@@ -1,0 +1,31 @@
+{
+  "name": "@stocktrax/mongodb",
+  "version": "0.0.0",
+  "type": "module",
+  "description": "MongoDB client and repository classes.",
+  "author": "Jacob Bare <jacob@parameter1.com>",
+  "homepage": "https://github.com/zarathustra323/stocktrax/tree/main/packages/mongodb#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zarathustra323/stocktrax.git",
+    "directory": "packages/mongodb"
+  },
+  "private": true,
+  "license": "MIT",
+  "main": "src/index.js",
+  "scripts": {
+    "lint": "eslint --ext .js ./",
+    "test": "yarn lint"
+  },
+  "engines": {
+    "node": ">=14.0"
+  },
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ],
+  "dependencies": {
+    "mongodb": "~4.1.4"
+  }
+}
