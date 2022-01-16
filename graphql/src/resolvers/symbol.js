@@ -71,6 +71,9 @@ export default {
     tags(info) {
       return getAsArray(info.tags);
     },
+    website({ website }) {
+      return /^http/.test(website) ? website : `https://${website}`;
+    },
   },
 
   SymbolIdentifiers: {
