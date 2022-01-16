@@ -1,4 +1,3 @@
-import { iterateMongoCursor } from '@stocktrax/mongodb';
 import mongodb from './mongodb.js';
 
 const { log } = console;
@@ -57,10 +56,11 @@ export default async () => {
     const { description, segmentDescription } = doc;
     const usExchangeInfo = micsToUSExchangeMap.get(doc.mic);
 
-    const nameParts = [description];
+    const descriptionParts = [description];
     if (segmentDescription && segmentDescription !== description) {
-      nameParts.push(segmentDescription);
+      descriptionParts.push(segmentDescription);
     }
+    const fullDescription = descriptionParts.map((part) => part.trim()).join(' > ');
 
     const filter = { segment: doc.segment };
     const update = {
@@ -74,7 +74,8 @@ export default async () => {
         '_meta.sourceLastProcessedAt': doc._meta.lastProcessedAt, // eslint-disable-line
         ...(usExchangeInfo && { usExchangeInfo }),
       }), {
-        name: usExchangeInfo ? usExchangeInfo.name : nameParts.map((part) => part.trim()).join(' > '),
+        fullDescription,
+        name: usExchangeInfo ? usExchangeInfo.name : fullDescription,
         '_meta.lastBuiltAt': now,
       }),
     };
