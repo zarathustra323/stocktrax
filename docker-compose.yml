@@ -17,6 +17,25 @@ x-node-service: &node-service
     <<: *node-env
 
 services:
+  graphql:
+    <<: *node-service
+    working_dir: /stocktrax/graphql
+    entrypoint: ["node"]
+    command: ["src"]
+    environment:
+      <<: *node-env
+      EXPOSED_HOST: graphql-stocktrax.dev.parameter1.com
+      EXPOSED_PORT: 38671
+      HOST: graphql-stocktrax.dev.parameter1.com
+      IEX_CLOUD_PUBLISHABLE_API_TOKEN: ${IEX_CLOUD_PUBLISHABLE_API_TOKEN-}
+      MONGO_URL: ${MONGO_URL-mongodb://root:password123@mongodb-primary:27017,mongodb-secondary:27017/?authSource=admin&readPreference=primary}
+      SHUTDOWN_GRACE_PERIOD: 0
+    hostname: graphql-stocktrax.dev.parameter1.com
+    ports:
+      - "38671:80"
+    depends_on:
+      - mongodb-secondary
+
   cli:
     <<: *node-service
     working_dir: /stocktrax/cli

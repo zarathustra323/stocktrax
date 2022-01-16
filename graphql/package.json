@@ -1,0 +1,39 @@
+{
+  "name": "@stocktrax/graphql",
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Stocktrax GraphQL API.",
+  "author": "Jacob Bare <jacob@parameter1.com>",
+  "homepage": "https://github.com/zarathustra323/stocktrax/tree/main/graphql#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zarathustra323/stocktrax.git",
+    "directory": "graphql"
+  },
+  "license": "MIT",
+  "main": "src/index.js",
+  "private": true,
+  "scripts": {
+    "dev": "gulp",
+    "lint": "eslint --ext .js ./",
+    "test": "yarn lint"
+  },
+  "dependencies": {
+    "@graphql-tools/schema": "^8.3.1",
+    "@graphql-tools/utils": "^8.6.1",
+    "@stocktrax/dayjs": "^0.0.0",
+    "@stocktrax/mongodb": "^0.0.0",
+    "@stocktrax/object-path": "^0.0.0",
+    "@stocktrax/utils": "^0.0.0",
+    "apollo-server-core": "^3.6.1",
+    "apollo-server-fastify": "^3.6.1",
+    "envalid": "^7.2.2",
+    "fastify": "^3.25.3",
+    "graphql": "^16.2.0",
+    "lodash.merge": "^4.6.2",
+    "node-fetch": "^3.1.0"
+  },
+  "devDependencies": {
+    "@parameter1/gulp": "^1.2.0"
+  }
+}
