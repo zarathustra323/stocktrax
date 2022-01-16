@@ -64,7 +64,7 @@ export default {
         ...(searchPhrase && {
           $or: [
             { $text: { $search: searchPhrase } },
-            { symbol: searchPhrase },
+            { symbol: searchPhrase.toUpperCase() },
           ],
         }),
         ...($and.length && { $and }),
