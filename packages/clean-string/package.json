@@ -1,0 +1,30 @@
+{
+  "name": "@stocktrax/clean-string",
+  "version": "0.0.0",
+  "type": "module",
+  "description": "String cleaner package.",
+  "author": "Jacob Bare <jacob@parameter1.com>",
+  "homepage": "https://github.com/zarathustra323/stocktrax/tree/main/packages/clean-string#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zarathustra323/stocktrax.git",
+    "directory": "packages/clean-string"
+  },
+  "license": "MIT",
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./html": "./src/html/index.js"
+  },
+  "private": true,
+  "scripts": {
+    "lint": "eslint --ext .js ./",
+    "test": "yarn lint"
+  },
+  "dependencies": {
+    "@stocktrax/utils": "0.0.0",
+    "cheerio": "^1.0.0-rc.10",
+    "html-entities": "^2.3.2",
+    "striptags": "^3.2.0"
+  }
+}
