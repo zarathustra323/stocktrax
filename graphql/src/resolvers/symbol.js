@@ -1,3 +1,4 @@
+import { getAsArray } from '@stocktrax/object-path';
 import projectionForType from '../projection/get-for-type.js';
 import projectionForConnection from '../projection/get-for-connection.js';
 
@@ -17,15 +18,29 @@ const symbolTypeMap = new Map([
 
 export default {
   Symbol: {
+    async companyInfo({ companyInfo, symbol }, _, { iexcloud, repos }) {
+      if (companyInfo) return companyInfo.data;
+      const data = await iexcloud.resource('stock').company({ symbol });
+      await repos.get('symbol').updateOne({
+        query: { symbol },
+        update: {
+          $set: { companyInfo: { data, lastRetrievedAt: new Date() } },
+        },
+      });
+      return data;
+    },
+
     async exchange({ exchangeSegment }, _, { repos }, info) {
       if (!exchangeSegment) return null;
       const loader = await repos.get('exchange').getDataloader();
       const projection = projectionForType(info);
       return loader.load({ foreignField: 'segment', value: exchangeSegment, projection });
     },
+
     identifiers(doc) {
       return doc;
     },
+
     async peers({ peers, symbol }, _, { iexcloud, repos }, info) {
       let toLookup = peers ? peers.data : [];
       if (!peers) {
@@ -43,6 +58,18 @@ export default {
       const loader = await repos.get('symbol').getDataloader();
       const projection = projectionForType(info);
       return loader.loadMany({ foreignField: 'symbol', values: toLookup, projection });
+    },
+  },
+
+  SymbolCompanyInfo: {
+    ceo(info) {
+      return info.CEO;
+    },
+    name(info) {
+      return info.companyName;
+    },
+    tags(info) {
+      return getAsArray(info.tags);
     },
   },
 

@@ -70,8 +70,29 @@ type Symbol {
   currency: String @project
   # Various security identifiers.
   identifiers: SymbolIdentifiers! @project(needs: ["cik", "figi", "iexId", "lei"])
+  # Company information for this symbol, if available.
+  companyInfo: SymbolCompanyInfo @project(needs: ["symbol"])
   # Peers of this symbol.
   peers: [Symbol!]! @project(needs: ["symbol"])
+}
+
+type SymbolCompanyInfo {
+  name: String
+  industry: String
+  website: String
+  description: String
+  ceo: String
+  sector: String
+  primarySicCode: String
+  employees: Int
+  tags: [String!]!
+  address1: String
+  address2: String
+  state: String
+  city: String
+  zip: String
+  country: String
+  phone: String
 }
 
 type SymbolIdentifiers {
