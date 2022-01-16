@@ -8,18 +8,26 @@ extend type Mutation {
 
 enum TransactionTypeEnum {
   BUY
+  CAPITAL_GAIN_LONG
+  CAPITAL_GAIN_SHORT
+  DIVIDEND
   SELL
 }
 
 type Transaction {
   id: ObjectID! @project(field: "_id")
-  type: TransactionTypeEnum! @project
+  type: TransactionType! @project
   symbol: Symbol! @project
   date: DateTime! @project
   shares: Float! @project
   price: Float! @project
   totalAmount: Float! @project
   portfolio: Portfolio! @project(field: "portfolio._id")
+}
+
+type TransactionType {
+  id: TransactionTypeEnum!
+  name: String!
 }
 
 input MutateNewTransactionInput {

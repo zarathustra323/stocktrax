@@ -1,6 +1,14 @@
 import { UserInputError } from 'apollo-server-fastify';
 import projectionForType from '../projection/get-for-type.js';
 
+const typeMap = new Map([
+  ['BUY', 'Buy'],
+  ['CAPITAL_GAIN_LONG', 'Capital Gain (Short)'],
+  ['CAPITAL_GAIN_SHORT', 'Capital Gain (Long)'],
+  ['DIVIDEND', 'Dividend Reinvestment'],
+  ['SELL', 'Sell'],
+]);
+
 export default {
   Transaction: {
     async portfolio({ portfolio }, _, { repos }, info) {
@@ -8,10 +16,24 @@ export default {
       const projection = projectionForType(info);
       return loader.load({ value: portfolio._id, projection });
     },
+
     async symbol({ symbol }, _, { repos }, info) {
       const loader = await repos.get('symbol').getDataloader();
       const projection = projectionForType(info);
       return loader.load({ foreignField: 'symbol', value: symbol, projection });
+    },
+
+    type({ type }) {
+      return type;
+    },
+  },
+
+  TransactionType: {
+    id(type) {
+      return type;
+    },
+    name(type) {
+      return typeMap.get(type);
     },
   },
 
