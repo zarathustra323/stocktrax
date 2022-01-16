@@ -87,3 +87,18 @@ const symbol = {
   region: '',
 };
 ```
+
+To find unique type, currency and region values:
+```js
+db.getCollection('symbols').aggregate([
+  {
+    $group: {
+      _id: null,
+      type: { $addToSet: '$type' },
+      currency: { $addToSet: '$currency' },
+      region: { $addToSet: '$region' },
+      exchangeSegment: { $addToSet: '$exchangeSegment' },
+    },
+  },
+]);
+```
