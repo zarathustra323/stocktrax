@@ -56,23 +56,25 @@ type QuerySymbolsEdge {
 type Symbol {
   "The internal identifier."
   id: ObjectID! @project(field: "_id")
-  # The symbol represented in Nasdaq Integrated symbology (INET)
+  "The symbol represented in Nasdaq Integrated symbology (INET)"
   symbol: String! @project
-  # The name of the company or security
+  "The name of the company or security"
   name: String! @project
-  # The common issue type
+  "The common issue type"
   type: SymbolType! @project
-  # The exchange segment where the security is traded. Not applicable to mutual funds or crypto.
+  "The exchange segment where the security is traded. Not applicable to mutual funds or crypto."
   exchange: Exchange @project(field: "exchangeSegment")
-  # The country code for the symbol using ISO 3166-1 alpha-2
+  "The country code for the symbol using ISO 3166-1 alpha-2"
   region: String @project
-  # The currency the symbol is traded in using ISO 4217
+  "The currency the symbol is traded in using ISO 4217"
   currency: String @project
-  # Various security identifiers.
+  "Various security identifiers."
   identifiers: SymbolIdentifiers! @project(needs: ["cik", "figi", "iexId", "lei"])
-  # Company information for this symbol, if available.
+  "Company information for this symbol, if available."
   companyInfo: SymbolCompanyInfo @project(needs: ["symbol"])
-  # Peers of this symbol.
+
+  logo: String
+  "Peers of this symbol."
   peers: [Symbol!]! @project(needs: ["symbol"])
 }
 
