@@ -101,4 +101,20 @@ db.getCollection('symbols').aggregate([
     },
   },
 ]);
+
+// it appears that the `mic` and `exchange` values are the same
+// `suffix` and `exchangeSuffix` also seem to be the same
+db.getCollection('exchanges').aggregate([
+  {
+    $group: {
+      _id: null,
+      segment: { $addToSet: '$segment' },
+      exchange: { $addToSet: '$exchange' },
+      mic: { $addToSet: '$mic' },
+      exchangeSegment: { $addToSet: '$exchangeSegment' },
+      suffix: { $addToSet: '$suffix' },
+      exchangeSuffix: { $addToSet: '$exchangeSuffix' },
+    },
+  },
+]);
 ```

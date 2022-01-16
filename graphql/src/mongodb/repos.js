@@ -4,6 +4,14 @@ import client from './client.js';
 const dbName = 'stocktrax';
 
 const map = new Map([
+  ['exchange', new AbstractRepo({
+    name: 'exchange',
+    client,
+    dbName,
+    collectionName: 'exchanges',
+    collatableFields: ['name', 'segment'],
+  })],
+
   ['portfolio', new AbstractRepo({
     name: 'portfolio',
     client,

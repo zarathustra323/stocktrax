@@ -54,6 +54,7 @@ type QuerySymbolsEdge {
 }
 
 type Symbol {
+  "The internal identifier."
   id: ObjectID! @project(field: "_id")
   # The symbol represented in Nasdaq Integrated symbology (INET)
   symbol: String! @project
@@ -62,7 +63,7 @@ type Symbol {
   # The common issue type
   type: SymbolType! @project
   # The exchange segment where the security is traded. Not applicable to mutual funds or crypto.
-  exchange: String @project(field: "exchangeSegment")
+  exchange: Exchange @project(field: "exchangeSegment")
   # The country code for the symbol using ISO 3166-1 alpha-2
   region: String @project
   # The currency the symbol is traded in using ISO 4217

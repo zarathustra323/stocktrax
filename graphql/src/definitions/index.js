@@ -1,5 +1,6 @@
 import { gql } from 'apollo-server-fastify';
 
+import exchange from './exchange.js';
 import pagination from './pagination.js';
 import portfolio from './portfolio.js';
 import symbol from './symbol.js';
@@ -29,6 +30,7 @@ type Mutation {
   ping: String!
 }
 
+${exchange}
 ${pagination}
 ${portfolio}
 ${symbol}
