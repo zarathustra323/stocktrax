@@ -1,14 +1,14 @@
 {
-  "name": "@stocktrax/polygon.io",
+  "name": "@stocktrax/iexcloud.io",
   "version": "0.0.0",
   "type": "module",
-  "description": "Polygon.io API client",
+  "description": "iexcloud.io API client",
   "author": "Jacob Bare <jacob@parameter1.com>",
-  "homepage": "https://github.com/zarathustra323/stocktrax/tree/main/packages/polygon.io#readme",
+  "homepage": "https://github.com/zarathustra323/stocktrax/tree/main/packages/iexcloud.io#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zarathustra323/stocktrax.git",
-    "directory": "packages/polygon.io"
+    "directory": "packages/iexcloud.io"
   },
   "private": true,
   "license": "MIT",
@@ -26,6 +26,7 @@
     "win32"
   ],
   "dependencies": {
+    "@stocktrax/utils": "^0.0.0",
     "node-fetch": "^3.1.0"
   }
 }
