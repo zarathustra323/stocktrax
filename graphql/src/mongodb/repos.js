@@ -10,6 +10,13 @@ const map = new Map([
     dbName,
     collectionName: 'portfolios',
   })],
+
+  ['symbol', new Repo({
+    name: 'symbol',
+    client,
+    dbName,
+    collectionName: 'symbols',
+  })],
 ]);
 
 export default {

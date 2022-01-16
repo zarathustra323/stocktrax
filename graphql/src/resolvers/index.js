@@ -3,6 +3,7 @@ import GraphQLObjectId from '../scalars/object-id.js';
 import GraphQLDateTime from '../scalars/date-time.js';
 
 import portfolio from './portfolio.js';
+import symbol from './symbol.js';
 
 export default merge({
   DateTime: GraphQLDateTime,
@@ -31,4 +32,4 @@ export default merge({
       return 'pong';
     },
   },
-}, portfolio);
+}, portfolio, symbol);

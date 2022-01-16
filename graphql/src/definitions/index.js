@@ -1,6 +1,7 @@
 import { gql } from 'apollo-server-fastify';
 
 import portfolio from './portfolio.js';
+import symbol from './symbol.js';
 
 export default gql`
 
@@ -18,5 +19,6 @@ type Mutation {
 }
 
 ${portfolio}
+${symbol}
 
 `;
