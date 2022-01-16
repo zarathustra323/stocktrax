@@ -20,8 +20,8 @@ services:
   graphql:
     <<: *node-service
     working_dir: /stocktrax/graphql
-    entrypoint: ["node"]
-    command: ["src"]
+    entrypoint: ["yarn"]
+    command: ["dev"]
     environment:
       <<: *node-env
       EXPOSED_HOST: graphql-stocktrax.dev.parameter1.com
