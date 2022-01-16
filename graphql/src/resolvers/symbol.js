@@ -41,6 +41,18 @@ export default {
       return doc;
     },
 
+    async logoSrc({ logo, symbol }, _, { iexcloud, repos }) {
+      if (logo) return logo.data.url;
+      const data = await iexcloud.resource('stock').logo({ symbol });
+      await repos.get('symbol').updateOne({
+        query: { symbol },
+        update: {
+          $set: { logo: { data, lastRetrievedAt: new Date() } },
+        },
+      });
+      return data.url;
+    },
+
     async peers({ peers, symbol }, _, { iexcloud, repos }, info) {
       let toLookup = peers ? peers.data : [];
       if (!peers) {

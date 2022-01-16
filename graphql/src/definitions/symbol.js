@@ -72,8 +72,8 @@ type Symbol {
   identifiers: SymbolIdentifiers! @project(needs: ["cik", "figi", "iexId", "lei"])
   "Company information for this symbol, if available."
   companyInfo: SymbolCompanyInfo @project(needs: ["symbol"])
-
-  logo: String
+  "A URL to the company logo"
+  logoSrc: String @project(field: "logo", needs: ["symbol"])
   "Peers of this symbol."
   peers: [Symbol!]! @project(needs: ["symbol"])
 }
