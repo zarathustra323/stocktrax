@@ -1,7 +1,8 @@
 import { gql } from 'apollo-server-fastify';
 
-export default gql`
+import portfolio from './portfolio.js';
 
+export default gql`
 
 scalar DateTime
 scalar ObjectID
@@ -15,5 +16,7 @@ type Mutation {
   "A simple ping/pong mutation."
   ping: String!
 }
+
+${portfolio}
 
 `;
