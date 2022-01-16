@@ -23,4 +23,12 @@ export default new Map([
     name: 'International Exchanges',
     buildFilter: (obj) => ({ segment: obj.segment }),
   }],
+  ['ref-data/sectors', {
+    name: 'Sectors',
+    buildFilter: (obj) => ({ name: obj.name }),
+  }],
+  ['ref-data/tags', {
+    name: 'Tags',
+    buildFilter: (obj) => ({ name: obj.name }),
+  }],
 ]);
