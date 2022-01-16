@@ -1,4 +1,4 @@
-import { asArray } from '@cms-apis/utils';
+import { asArray } from '@stocktrax/utils';
 import get from './get.js';
 
 /**
