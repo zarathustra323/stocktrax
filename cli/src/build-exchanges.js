@@ -56,10 +56,18 @@ export default async () => {
     const { description, segmentDescription } = doc;
     const usExchangeInfo = micsToUSExchangeMap.get(doc.mic);
 
+    const fullNameParts = [usExchangeInfo ? usExchangeInfo.name : description];
+    if (segmentDescription && segmentDescription !== description) {
+      const regex = new RegExp(`^${fullNameParts[0]}`, 'i');
+      fullNameParts.push(segmentDescription.replace(regex, ''));
+    }
+
     const descriptionParts = [description];
     if (segmentDescription && segmentDescription !== description) {
       descriptionParts.push(segmentDescription);
     }
+
+    const fullName = fullNameParts.map((part) => part.trim()).join(' > ');
     const fullDescription = descriptionParts.map((part) => part.trim()).join(' > ');
 
     const filter = { segment: doc.segment };
@@ -75,6 +83,7 @@ export default async () => {
         ...(usExchangeInfo && { usExchangeInfo }),
       }), {
         fullDescription,
+        fullName,
         name: usExchangeInfo ? usExchangeInfo.name : fullDescription,
         '_meta.lastBuiltAt': now,
       }),
