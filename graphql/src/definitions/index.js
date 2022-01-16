@@ -4,6 +4,7 @@ import exchange from './exchange.js';
 import pagination from './pagination.js';
 import portfolio from './portfolio.js';
 import symbol from './symbol.js';
+import transaction from './transaction.js';
 
 export default gql`
 
@@ -34,5 +35,6 @@ ${exchange}
 ${pagination}
 ${portfolio}
 ${symbol}
+${transaction}
 
 `;

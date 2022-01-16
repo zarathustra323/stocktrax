@@ -27,6 +27,14 @@ const map = new Map([
     collectionName: 'symbols',
     collatableFields: ['name', 'symbol'],
   })],
+
+  ['transaction', new AbstractRepo({
+    name: 'transaction',
+    client,
+    dbName,
+    collectionName: 'transactions',
+    collatableFields: [],
+  })],
 ]);
 
 export default function Repos() {
