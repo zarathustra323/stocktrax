@@ -1,0 +1,23 @@
+{
+  "name": "@stocktrax/dayjs",
+  "version": "0.0.0",
+  "type": "module",
+  "description": "dayjs package.",
+  "author": "Jacob Bare <jacob@parameter1.com>",
+  "homepage": "https://github.com/zarathustra323/stocktrax/tree/main/packages/dayjs#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zarathustra323/stocktrax.git",
+    "directory": "packages/dayjs"
+  },
+  "license": "MIT",
+  "main": "src/index.js",
+  "private": true,
+  "scripts": {
+    "lint": "eslint --ext .js ./",
+    "test": "yarn lint"
+  },
+  "dependencies": {
+    "dayjs": "^1.10.7"
+  }
+}
