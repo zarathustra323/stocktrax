@@ -1,7 +1,32 @@
 import { get, getAsArray } from '@stocktrax/object-path';
 import { mapSchema, MapperKind } from '@graphql-tools/utils';
 
-export const enums = {};
+export const enums = {
+  /**
+   *
+   */
+  PaginationMethodEnum: {
+    CURSOR: 'cursor',
+    OFFSET: 'offset',
+  },
+
+  /**
+   *
+   */
+  QuerySymbolsSortFieldEnum: {
+    ID: '_id',
+    NAME: 'name',
+    SYMBOL: 'symbol',
+  },
+
+  /**
+   *
+   */
+  SortOrderEnum: {
+    ASC: 1,
+    DESC: -1,
+  },
+};
 
 export function getValue(path, throwOnNotFound = false) {
   const value = get(enums, path);

@@ -1,4 +1,5 @@
 import repos from '../mongodb/repos.js';
+import projectionForConnection from '../projection/get-for-connection.js';
 
 const symbolTypeMap = new Map([
   ['AD', 'ADR'],
@@ -16,12 +17,6 @@ const symbolTypeMap = new Map([
 
 export default {
   Symbol: {
-    id(doc) {
-      return doc._id;
-    },
-    exchange(doc) {
-      return doc.exchangeSegment;
-    },
     identifiers(doc) {
       return doc;
     },
@@ -43,11 +38,13 @@ export default {
   },
 
   Query: {
-    async symbols(_, { input }) {
+    async symbols(_, { input }, __, info) {
       const {
         currencies,
         exchanges,
+        pagination,
         regions,
+        sort,
         types,
       } = input;
 
@@ -57,12 +54,14 @@ export default {
       if (regions.length) $and.push({ region: { $in: regions } });
       if (types.length) $and.push({ type: { $in: types } });
 
-      const query = {
-        ...($and.length && { $and }),
-      };
-
-      const cursor = await repos.get('symbol').find({ query });
-      return cursor.toArray();
+      const query = { ...($and.length && { $and }) };
+      const projection = projectionForConnection(info);
+      return repos.get('symbol').paginate({
+        query,
+        sort,
+        projection,
+        pagination,
+      });
     },
   },
 };

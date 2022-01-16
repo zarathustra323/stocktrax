@@ -1,5 +1,6 @@
 import { gql } from 'apollo-server-fastify';
 
+import pagination from './pagination.js';
 import portfolio from './portfolio.js';
 import symbol from './symbol.js';
 
@@ -11,6 +12,13 @@ scalar ObjectID
 directive @connectionProject(type: String!) on OBJECT
 directive @project(field: String, needs: [String!]! = []) on FIELD_DEFINITION
 
+enum SortOrderEnum {
+  "Sorts results by ascending values."
+  ASC
+  "Sorts results by descending values."
+  DESC
+}
+
 type Query {
   "A simple ping/pong query."
   ping: String!
@@ -21,6 +29,7 @@ type Mutation {
   ping: String!
 }
 
+${pagination}
 ${portfolio}
 ${symbol}
 

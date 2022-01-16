@@ -21,6 +21,7 @@
   "dependencies": {
     "@graphql-tools/schema": "^8.3.1",
     "@graphql-tools/utils": "^8.6.1",
+    "@stocktrax/dataloader": "^0.0.0",
     "@stocktrax/dayjs": "^0.0.0",
     "@stocktrax/mongodb": "^0.0.0",
     "@stocktrax/object-path": "^0.0.0",

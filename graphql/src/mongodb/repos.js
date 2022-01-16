@@ -1,21 +1,23 @@
-import { Repo } from '@stocktrax/mongodb';
+import AbstractRepo from './repo.js';
 import client from './client.js';
 
 const dbName = 'stocktrax';
 
 const map = new Map([
-  ['portfolio', new Repo({
+  ['portfolio', new AbstractRepo({
     name: 'portfolio',
     client,
     dbName,
     collectionName: 'portfolios',
+    collatableFields: ['name'],
   })],
 
-  ['symbol', new Repo({
+  ['symbol', new AbstractRepo({
     name: 'symbol',
     client,
     dbName,
     collectionName: 'symbols',
+    collatableFields: ['name', 'symbol'],
   })],
 ]);
 

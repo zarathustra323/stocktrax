@@ -3,7 +3,13 @@ import { gql } from 'apollo-server-fastify';
 export default gql`
 
 extend type Query {
-  symbols(input: QuerySymbolsInput = {}): [Symbol!]!
+  symbols(input: QuerySymbolsInput = {}): QuerySymbolsConnection!
+}
+
+enum QuerySymbolsSortFieldEnum {
+  ID
+  NAME
+  SYMBOL
 }
 
 enum SymbolTypeEnum {
@@ -31,22 +37,38 @@ enum SymbolTypeEnum {
   EMPTY
 }
 
+type QuerySymbolsConnection @connectionProject(type: "Symbol") {
+  "The total number of objects available for this connection."
+  totalCount: Int!
+  "The connection edges containing the related node and other related fields."
+  edges: [QuerySymbolsEdge!]!
+  "The paging information for this connection."
+  pageInfo: PageInfo!
+}
+
+type QuerySymbolsEdge {
+  "An opaque cursor for this node that is used with pagination."
+  cursor: String!
+  "The primary node/document."
+  node: Symbol!
+}
+
 type Symbol {
-  id: ObjectID!
+  id: ObjectID! @project(field: "_id")
   # The symbol represented in Nasdaq Integrated symbology (INET)
-  symbol: String!
+  symbol: String! @project
   # The name of the company or security
-  name: String!
+  name: String! @project
   # The common issue type
-  type: SymbolType!
+  type: SymbolType! @project
   # The exchange segment where the security is traded. Not applicable to mutual funds or crypto.
-  exchange: String
+  exchange: String @project(field: "exchangeSegment")
   # The country code for the symbol using ISO 3166-1 alpha-2
-  region: String
+  region: String @project
   # The currency the symbol is traded in using ISO 4217
-  currency: String
+  currency: String @project
   # Various security identifiers.
-  identifiers: SymbolIdentifiers!
+  identifiers: SymbolIdentifiers! @project(needs: ["cik", "figi", "iexId", "lei"])
 }
 
 type SymbolIdentifiers {
@@ -72,10 +94,21 @@ input QuerySymbolsInput {
   currencies: [String!]! = []
   "The exchange segments to filter by. Will exclude crypto and mutual funds if set."
   exchanges: [String!]! = []
+  "Specifies how the results should be paginated."
+  pagination: PaginationInput! = {}
   "The country codes, in ISO 3166-1 alpha-2, to filter by."
   regions: [String!]! = []
+  "Specifies the sort field and order."
+  sort: QuerySymbolsSortInput! = {}
   "The security types to filter by."
   types: [SymbolTypeEnum!]! = []
+}
+
+input QuerySymbolsSortInput {
+  "The field to sort by."
+  field: QuerySymbolsSortFieldEnum! = SYMBOL
+  "The sort order."
+  order: SortOrderEnum! = ASC
 }
 
 `;
