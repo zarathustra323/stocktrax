@@ -2,7 +2,7 @@ import Joi from '@parameter1/joi';
 
 export default {
   query: Joi.object().unknown().default({}),
-  limit: Joi.number().min(1).max(100).default(10),
+  limit: Joi.number().min(1).max(20).default(10),
   sort: Joi.object({
     field: Joi.string().trim().default('_id'),
     order: Joi.alternatives().try(
