@@ -13,6 +13,17 @@ export const enums = {
   /**
    *
    */
+  QueryExchangesSortFieldEnum: {
+    ID: '_id',
+    DESCRIPTION: 'fullDescription',
+    FULL_NAME: 'fullName',
+    NAME: 'name',
+    SEGMENT: 'segment',
+  },
+
+  /**
+   *
+   */
   QuerySymbolsSortFieldEnum: {
     ID: '_id',
     NAME: 'name',
