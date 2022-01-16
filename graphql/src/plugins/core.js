@@ -1,4 +1,5 @@
 import Repos from '../mongodb/repos.js';
+import iexcloud from '../iexcloud.js';
 
 const isIntrospectionQuery = (operation) => operation.selectionSet.selections.every((selection) => {
   const fieldName = selection.name.value;
@@ -15,8 +16,8 @@ export default function CorePlugin() {
           // let introspection queries pass through.
           if (isIntrospectionQuery(operation)) return;
 
-          const repos = Repos();
-          context.repos = repos;
+          context.iexcloud = iexcloud;
+          context.repos = Repos();
         },
       };
     },

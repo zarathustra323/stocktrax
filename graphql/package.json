@@ -23,6 +23,7 @@
     "@graphql-tools/utils": "^8.6.1",
     "@stocktrax/dataloader": "^0.0.0",
     "@stocktrax/dayjs": "^0.0.0",
+    "@stocktrax/iexcloud.io": "^0.0.0",
     "@stocktrax/mongodb": "^0.0.0",
     "@stocktrax/object-path": "^0.0.0",
     "@stocktrax/utils": "^0.0.0",
