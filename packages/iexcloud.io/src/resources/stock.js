@@ -8,6 +8,12 @@ export default class StockResource extends AbstractResource {
     return this.client.request({ endpoint });
   }
 
+  async logo(params = {}) {
+    const symbol = params.symbol.toLowerCase();
+    const endpoint = StockResource.createEndpoint(`${symbol}/logo`);
+    return this.client.request({ endpoint });
+  }
+
   async peers(params = {}) {
     const symbol = params.symbol.toLowerCase();
     const endpoint = StockResource.createEndpoint(`${symbol}/peers`);
