@@ -48,6 +48,11 @@ services:
     depends_on:
       - mongodb-secondary
 
+  commands:
+    <<: *node-service
+    entrypoint: ["tail"]
+    command: ["-f", "/dev/null"]
+
   mongodb-primary:
     image: bitnami/mongodb:5.0
     environment:
