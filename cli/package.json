@@ -1,0 +1,35 @@
+{
+  "name": "@stocktrax/cli",
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Command line interface",
+  "author": "Jacob Bare <jacob@parameter1.com>",
+  "homepage": "https://github.com/zarathustra323/stocktrax/tree/main/cli#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zarathustra323/stocktrax.git",
+    "directory": "cli"
+  },
+  "private": true,
+  "license": "MIT",
+  "main": "src/index.js",
+  "scripts": {
+    "lint": "eslint --ignore-path ../.eslintignore --ext .js ./",
+    "test": "yarn lint"
+  },
+  "engines": {
+    "node": ">=14.0"
+  },
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ],
+  "dependencies": {
+    "@stocktrax/iexcloud.io": "^0.0.0",
+    "@stocktrax/mongodb": "^0.0.0",
+    "@stocktrax/utils": "^0.0.0",
+    "envalid": "^7.2.2",
+    "inquirer": "^8.2.0"
+  }
+}

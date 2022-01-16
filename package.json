@@ -12,6 +12,7 @@
   },
   "workspaces": [
     "app",
+    "cli",
     "graphql",
     "packages/*"
   ],
