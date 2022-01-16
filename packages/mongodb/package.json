@@ -13,6 +13,11 @@
   "private": true,
   "license": "MIT",
   "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./pagination/find": "./src/pagination/find/index.js",
+    "./pagination/utils": "./src/pagination/utils/index.js"
+  },
   "scripts": {
     "lint": "eslint --ext .js ./",
     "test": "yarn lint"
@@ -26,6 +31,11 @@
     "win32"
   ],
   "dependencies": {
+    "@parameter1/joi": "^1.2.10",
+    "@stocktrax/object-path": "^0.0.0",
+    "base64-url": "^2.3.3",
+    "bson": "^4.6.1",
+    "lodash.merge": "^4.6.2",
     "mongodb": "~4.1.4"
   }
 }
