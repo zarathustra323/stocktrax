@@ -1,4 +1,4 @@
-import mongodb from './mongodb.js';
+import mongodb from '../mongodb.js';
 
 const { log } = console;
 

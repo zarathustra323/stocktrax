@@ -1,6 +1,6 @@
 import { eachSeries } from 'async';
 import { iterateMongoCursor } from '@stocktrax/mongodb';
-import mongodb from './mongodb.js';
+import mongodb from '../mongodb.js';
 
 const { log } = console;
 
