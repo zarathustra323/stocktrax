@@ -2,6 +2,12 @@ import { cleanPath } from '@stocktrax/utils';
 import AbstractResource from './-abstract.js';
 
 export default class StockResource extends AbstractResource {
+  async company(params = {}) {
+    const symbol = params.symbol.toLowerCase();
+    const endpoint = StockResource.createEndpoint(`${symbol}/company`);
+    return this.client.request({ endpoint });
+  }
+
   async peers(params = {}) {
     const symbol = params.symbol.toLowerCase();
     const endpoint = StockResource.createEndpoint(`${symbol}/peers`);
