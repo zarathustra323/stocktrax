@@ -3,6 +3,7 @@ import { chunkArray, immediatelyThrow } from '@stocktrax/utils';
 import { eachSeries, eachOfSeries } from 'async';
 import iex from './iexcloud.js';
 import mongodb from './mongodb.js';
+import buildExchanges from './build-exchanges.js';
 import buildSymbols from './build-symbols.js';
 import refDataMap from './ref-data-map.js';
 
@@ -27,13 +28,20 @@ const { log } = console;
     },
     {
       type: 'confirm',
+      name: 'shouldBuildExchanges',
+      message: 'Build exchanges collection?',
+      default: false,
+    },
+    {
+      type: 'confirm',
       name: 'shouldBuildSymbols',
       message: 'Build consolidated symbols collection?',
-      default: true,
+      default: false,
     },
   ];
 
   const {
+    shouldBuildExchanges,
     shouldBuildSymbols,
     importIEXRefData,
     refDataTypes,
@@ -73,6 +81,12 @@ const { log } = console;
 
       log(`Data sync complete for ${ref.name}`);
     });
+  }
+
+  if (shouldBuildExchanges) {
+    log('Building exchanges collection...');
+    await buildExchanges();
+    log('Exchanges built.');
   }
 
   if (shouldBuildSymbols) {
