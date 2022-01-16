@@ -1,0 +1,26 @@
+{
+  "name": "@stocktrax/dataloader",
+  "version": "0.0.0",
+  "type": "module",
+  "description": "GraphQL MongoDB dataloaders",
+  "author": "Jacob Bare <jacob@parameter1.com>",
+  "homepage": "https://github.com/zarathustra/stocktrax/tree/main/packages/dataloader#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zarathustra/stocktrax.git",
+    "directory": "packages/dataloader"
+  },
+  "license": "MIT",
+  "main": "src/index.js",
+  "private": true,
+  "scripts": {
+    "lint": "eslint --ext .js ./",
+    "test": "yarn lint"
+  },
+  "dependencies": {
+    "@stocktrax/utils": "^0.0.0",
+    "bson": "^4.6.1",
+    "dataloader": "^2.0.0",
+    "object-hash": "^2.2.0"
+  }
+}
