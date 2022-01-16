@@ -39,7 +39,7 @@ export default async () => {
 
     const ops = [];
     await iterateMongoCursor(cursor, (doc) => {
-      const filter = { symbol: doc.symbol, type: doc.type.toUpperCase() };
+      const filter = { symbol: doc.symbol, type: (doc.type || 'empty').toUpperCase() };
       const update = {
         $setOnInsert: {
           ...filter,
