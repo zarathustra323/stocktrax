@@ -10,7 +10,7 @@ type Exchange {
   "The unique exchange segment (using a 'subset' of the MIC)"
   segment: String! @project
   "The exchange name. Will also include the segment name if set and different from the exchange name."
-  name: String! @project
+  name: String! @project(needs: ["usExchangeInfo.name"])
   # The country code for the exchange using ISO 3166-1 alpha-2
   region: String @project
   "Suffix to be added for symbols on this exchange"
