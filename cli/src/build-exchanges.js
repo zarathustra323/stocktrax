@@ -31,11 +31,31 @@ export default async () => {
   const destination = await mongodb.collection({ dbName: 'stocktrax', name: 'exchanges' });
   const cursor = await source.find();
 
+  const docs = await cursor.toArray();
+  const micToSegmentsMap = new Map();
+  const segmentsToMicMap = new Map();
+
+  docs.forEach((doc) => {
+    const { mic, segment } = doc;
+    if (!micToSegmentsMap.has(mic)) micToSegmentsMap.set(mic, new Set());
+    segmentsToMicMap.set(segment, mic);
+    micToSegmentsMap.get(mic).add(doc.segment);
+  });
+
+  const micsToUSExchangeMap = new Map();
+  segmentsToMicMap.forEach((mic, segment) => {
+    const info = usExchangeMap.get(segment);
+    if (info) micsToUSExchangeMap.set(mic, info);
+  });
+  micToSegmentsMap.forEach((_, mic) => {
+    const info = usExchangeMap.get(mic);
+    if (info) micsToUSExchangeMap.set(mic, info);
+  });
+
   const ops = [];
-  await iterateMongoCursor(cursor, (doc) => {
+  docs.forEach((doc) => {
     const { description, segmentDescription } = doc;
-    let usExchangeInfo = usExchangeMap.get(doc.mic);
-    if (!usExchangeInfo) usExchangeInfo = usExchangeMap.get(doc.segment);
+    const usExchangeInfo = micsToUSExchangeMap.get(doc.mic);
 
     const nameParts = [description];
     if (segmentDescription && segmentDescription !== description) {
@@ -54,7 +74,7 @@ export default async () => {
         '_meta.sourceLastProcessedAt': doc._meta.lastProcessedAt, // eslint-disable-line
         ...(usExchangeInfo && { usExchangeInfo }),
       }), {
-        name: nameParts.map((part) => part.trim()).join(' > '),
+        name: usExchangeInfo ? usExchangeInfo.name : nameParts.map((part) => part.trim()).join(' > '),
         '_meta.lastBuiltAt': now,
       }),
     };
