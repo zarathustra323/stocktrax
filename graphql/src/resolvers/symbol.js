@@ -26,6 +26,24 @@ export default {
     identifiers(doc) {
       return doc;
     },
+    async peers({ peers, symbol }, _, { iexcloud, repos }, info) {
+      let toLookup = peers ? peers.data : [];
+      if (!peers) {
+        const data = await iexcloud.resource('stock').peers({ symbol });
+        await repos.get('symbol').updateOne({
+          query: { symbol },
+          update: {
+            $set: { peers: { data, lastRetrievedAt: new Date() } },
+          },
+        });
+        toLookup = data;
+      }
+
+      if (!toLookup.length) return [];
+      const loader = await repos.get('symbol').getDataloader();
+      const projection = projectionForType(info);
+      return loader.loadMany({ foreignField: 'symbol', values: toLookup, projection });
+    },
   },
 
   SymbolIdentifiers: {

@@ -70,6 +70,8 @@ type Symbol {
   currency: String @project
   # Various security identifiers.
   identifiers: SymbolIdentifiers! @project(needs: ["cik", "figi", "iexId", "lei"])
+  # Peers of this symbol.
+  peers: [Symbol!]! @project(needs: ["symbol"])
 }
 
 type SymbolIdentifiers {
