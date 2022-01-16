@@ -1,14 +1,26 @@
 import fetch from 'node-fetch';
 import { cleanPath } from '@stocktrax/utils';
 
+import StockResource from './resources/stock.js';
+
 export default class IEXCloudApiClient {
   constructor({ publishableToken, version = 'stable' } = {}) {
     this.publishableToken = publishableToken;
     this.version = version;
+
+    this.resources = new Map([
+      ['stock', new StockResource({ client: this })],
+    ]);
   }
 
   get baseUrl() {
     return `https://cloud.iexapis.com/${cleanPath(this.version)}`;
+  }
+
+  resource(key) {
+    const resource = this.resources.get(key);
+    if (!resource) throw new Error(`No API resource found for ${key}`);
+    return resource;
   }
 
   async request({
