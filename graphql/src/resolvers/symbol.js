@@ -41,16 +41,8 @@ export default {
       return doc;
     },
 
-    async logoSrc({ logo, symbol }, _, { iexcloud, repos }) {
-      if (logo) return logo.data.url;
-      const data = await iexcloud.resource('stock').logo({ symbol });
-      await repos.get('symbol').updateOne({
-        query: { symbol },
-        update: {
-          $set: { logo: { data, lastRetrievedAt: new Date() } },
-        },
-      });
-      return data.url;
+    async logoSrc({ symbol }) {
+      return `https://storage.googleapis.com/iexcloud-hl37opg/api/logos/${symbol}.png`;
     },
 
     async peers({ peers, symbol }, _, { iexcloud, repos }, info) {
