@@ -22,7 +22,6 @@ export default {
       if (!exchangeSegment) return null;
       const loader = await repos.get('exchange').getDataloader();
       const projection = projectionForType(info);
-      console.log({ projection });
       return loader.load({ foreignField: 'segment', value: exchangeSegment, projection });
     },
     identifiers(doc) {
