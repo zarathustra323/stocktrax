@@ -17,6 +17,22 @@ x-node-service: &node-service
     <<: *node-env
 
 services:
+  app:
+    <<: *node-service
+    working_dir: /stocktrax/app
+    entrypoint: ["yarn"]
+    command: ["dev"]
+    environment:
+      <<: *node-env
+      HOST: app-stocktrax.dev.parameter1.com
+      PORT: 38670
+      VITE_GRAPHQL_URL: ${VITE_GRAPHQL_URL-http://graphql-stocktrax.dev.parameter1.com:38671}
+    depends_on:
+      - graphql
+    ports:
+      - "38670:38670"
+    hostname: app-stocktrax.dev.parameter1.com
+
   graphql:
     <<: *node-service
     working_dir: /stocktrax/graphql
