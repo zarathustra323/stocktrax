@@ -7,6 +7,11 @@ const routes = [
     component: () => import('../pages/index.vue'),
   },
   {
+    path: '/style-guide',
+    name: 'style-guide',
+    component: () => import('../pages/style-guide.vue'),
+  },
+  {
     // always be open
     path: '/:pathMatch(.*)*',
     name: 'not-found',
