@@ -1,27 +1,25 @@
 <template>
-  <div class="p-10">
-    <div class="space-y-6">
-      <div>
-        <button-element>
-          Action
-        </button-element>
-      </div>
+  <div class="space-y-6">
+    <div>
+      <button-element>
+        Action
+      </button-element>
+    </div>
 
-      <div>
-        <button-element :icon="SaveIcon">
-          Action
-        </button-element>
-      </div>
+    <div>
+      <button-element :icon="SaveIcon">
+        Action
+      </button-element>
+    </div>
 
-      <div>
-        <button-element :loading="true">
-          Action
-        </button-element>
-      </div>
+    <div>
+      <button-element :loading="true">
+        Action
+      </button-element>
+    </div>
 
-      <div>
-        <error-element :error="error" />
-      </div>
+    <div class="max-w-md">
+      <error-element :error="error" />
     </div>
   </div>
 </template>
