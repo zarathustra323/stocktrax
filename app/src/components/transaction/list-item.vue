@@ -6,11 +6,12 @@
     <td class="p-1">
       {{ node.type.name }}
     </td>
-    <td class="p-1">
-      {{ node.shares }}
+    <td class="p-1 flex items-center">
+      <img :src="node.symbol.logoSrc" :class="imageClasses">
+      {{ node.symbol.name }} ({{ node.symbol.symbol }})
     </td>
     <td class="p-1">
-      {{ node.symbol.name }} ({{ node.symbol.symbol }})
+      {{ node.shares }}
     </td>
     <td class="p-1">
       {{ price }}
@@ -35,6 +36,18 @@ export default {
       required: true,
     },
   },
+
+  data: () => ({
+    imageClasses: [
+      'bg-white',
+      'mr-3',
+      'w-8',
+      'h-8',
+      'shadow',
+      'rounded-full',
+      'object-contain',
+    ],
+  }),
 
   computed: {
     date() {

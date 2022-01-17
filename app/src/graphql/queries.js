@@ -17,6 +17,7 @@ export const LIST_TRANSACTIONS = gql`
             id
             symbol # @todo rename to security
             name
+            logoSrc
             exchange { id name }
           }
           shares

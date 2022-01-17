@@ -17,16 +17,16 @@
             Type
           </th>
           <th class="p-1 text-left">
-            Shares
+            Security
           </th>
           <th class="p-1 text-left">
-            Security
+            Shares
           </th>
           <th class="p-1 text-left">
             Price
           </th>
           <th class="p-1 text-left">
-            Total Amount
+            Amount
           </th>
           <th class="p-1 text-left">
             Portfolio
