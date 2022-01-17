@@ -1,4 +1,5 @@
 import { UserInputError } from 'apollo-server-fastify';
+import projectionForConnection from '../projection/get-for-connection.js';
 import projectionForType from '../projection/get-for-type.js';
 
 const typeMap = new Map([
@@ -65,6 +66,24 @@ export default {
         totalAmount: shares * price,
       };
       return repos.get('transaction').insertOne({ doc });
+    },
+  },
+
+  Query: {
+    async transactions(_, { input }, { repos }, info) {
+      const {
+        pagination,
+        sort,
+      } = input;
+
+      const query = {};
+      const projection = projectionForConnection(info);
+      return repos.get('transaction').paginate({
+        query,
+        sort,
+        projection,
+        pagination,
+      });
     },
   },
 };

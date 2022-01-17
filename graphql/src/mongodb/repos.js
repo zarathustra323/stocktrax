@@ -33,7 +33,7 @@ const map = new Map([
     client,
     dbName,
     collectionName: 'transactions',
-    collatableFields: [],
+    collatableFields: ['symbol'],
   })],
 ]);
 

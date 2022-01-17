@@ -33,6 +33,15 @@ export const enums = {
   /**
    *
    */
+  QueryTransactionsSortFieldEnum: {
+    ID: '_id',
+    DATE: 'date',
+    SYMBOL: 'symbol',
+  },
+
+  /**
+   *
+   */
   SortOrderEnum: {
     ASC: 1,
     DESC: -1,
